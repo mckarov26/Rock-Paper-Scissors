@@ -14,9 +14,9 @@ const getComputerChoice = () => {
         case 3:
             return "scissors";
             break;  
-        default:
+        
             
-    }
+    }   
 }
 
 const getHumanChoice = () => {
@@ -33,17 +33,24 @@ const getHumanChoice = () => {
         case "scissors":
             return "scissors";
             break;
-        default:
-            return "Invalid! Please Choose rock, paper or scissors";
+        default:    
+            return "Please Choose the following string values: rock, paper or scissors";
+            
     }
 }
 
-let humanScore = 0;
-let computerScore = 0;
 
 
-const playRound = (humanChoice, computerChoice) => {
+const playGame = () => {
+    let humanScore = 0;
+    let computerScore = 0;
+
+
+    let humanChoice = getHumanChoice();
     humanChoice = humanChoice.toLowerCase();
+    let computerChoice = getComputerChoice();
+
+   
 
     if (humanChoice === computerChoice) {
         console.log(`It's a tie! You both chose ${humanChoice}.`);
@@ -61,9 +68,16 @@ const playRound = (humanChoice, computerChoice) => {
         (computerChoice === "scissors" && humanChoice === "paper")
     ) {
         console.log(`Computer win! ${computerChoice} beats ${humanChoice}`);
-        computerChoice++;
+        computerScore++;
     } else {
-        console.log("Invalid input!");
+        console.log("Invalid! Please Choose rock, paper or scissors");
     }
+    
 }
+
+playGame();
+playGame();
+playGame();
+playGame();
+playGame();
 
