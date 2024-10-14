@@ -41,9 +41,13 @@ const getHumanChoice = () => {
 
 
 
-const playGame = () => {
-    let humanScore = 0;
-    let computerScore = 0;
+
+let humanScore = 0;
+let computerScore = 0;
+
+
+const playRound = () => {
+    
 
 
     let humanChoice = getHumanChoice();
@@ -59,25 +63,42 @@ const playGame = () => {
         (humanChoice === "paper" && computerChoice === "rock") ||
         (humanChoice === "scissors" && computerChoice === "paper")
     ) {
-        console.log(`You win!, ${humanChoice} beats ${computerChoice}`);
         humanScore++;
+        console.log(`You win!, ${humanChoice} beats ${computerChoice}. Your score is ${humanScore} and Computer score is ${computerScore}`);
+        
         
     } else if (
         (computerChoice === "rock" && humanChoice === "scissors") ||
         (computerChoice === "paper" && humanChoice === "rock") ||
         (computerChoice === "scissors" && humanChoice === "paper")
     ) {
-        console.log(`Computer win! ${computerChoice} beats ${humanChoice}`);
         computerScore++;
+        console.log(`Computer win! ${computerChoice} beats ${humanChoice}. Your score is ${humanScore} and Computer score is ${computerScore}`);
+
+        
     } else {
         console.log("Invalid! Please Choose rock, paper or scissors");
     }
     
 }
 
-playGame();
-playGame();
-playGame();
-playGame();
-playGame();
+const playGame = () => {
+
+
+    
+        
+    for (i = 1; i < 6; i++) {
+        playRound();
+
+    }
+
+    console.log(`Your score is ${humanScore} and Computer Score is ${computerScore}`);
+
+    
+
+}
+
+
+
+playGame(); 
 
