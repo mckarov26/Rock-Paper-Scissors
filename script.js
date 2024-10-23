@@ -19,25 +19,7 @@ const getComputerChoice = () => {
     }   
 }
 
-const getHumanChoice = () => {
-    let yourChoice = prompt("Please Choose rock, paper or scissors");
-    let humanChoice = yourChoice.toLowerCase();
 
-    switch(humanChoice) {
-        case "rock":
-            return "rock";
-            break;
-        case "paper":
-            return "paper";
-            break;
-        case "scissors":
-            return "scissors";
-            break;
-        default:    
-            return "Please Choose the following string values: rock, paper or scissors";
-            
-    }
-}
 
 
 
@@ -46,25 +28,28 @@ let humanScore = 0;
 let computerScore = 0;
 
 
-const playRound = () => {
+const playRound = (humanChoice, computerChoice) => {
     
 
-
-    let humanChoice = getHumanChoice();
-    humanChoice = humanChoice.toLowerCase();
-    let computerChoice = getComputerChoice();
+    const resultDiv = document.getElementById("results");
+   
+  
+   
 
    
 
     if (humanChoice === computerChoice) {
-        console.log(`It's a tie! You both chose ${humanChoice}.`);
+        humanScore++;
+        computerScore++;
+       resultDiv.textContent = `It's a tie! You both chose ${humanChoice}. Your score is ${humanScore} and Computer score is ${computerScore}`;
+        
     } else if (
         (humanChoice === "rock" && computerChoice === "scissors") ||
         (humanChoice === "paper" && computerChoice === "rock") ||
         (humanChoice === "scissors" && computerChoice === "paper")
     ) {
         humanScore++;
-        console.log(`You win!, ${humanChoice} beats ${computerChoice}. Your score is ${humanScore} and Computer score is ${computerScore}`);
+        resultDiv.textContent = `You win!, ${humanChoice} beats ${computerChoice}. Your score is ${humanScore} and Computer score is ${computerScore}`;
         
         
     } else if (
@@ -73,32 +58,38 @@ const playRound = () => {
         (computerChoice === "scissors" && humanChoice === "paper")
     ) {
         computerScore++;
-        console.log(`Computer win! ${computerChoice} beats ${humanChoice}. Your score is ${humanScore} and Computer score is ${computerScore}`);
+        resultDiv.textContent = `Computer win! ${computerChoice} beats ${humanChoice}. Your score is ${humanScore} and Computer score is ${computerScore}`;
 
         
     } else {
         console.log("Invalid! Please Choose rock, paper or scissors");
     }
+
+
+    
+
+ 
     
 }
 
-const playGame = () => {
+
+document.getElementById("rock").addEventListener("click", () => {
+    const humanChoice = "rock";
+    const computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
+});
 
 
-    
-        
-    for (i = 1; i < 6; i++) {
-        playRound();
+document.getElementById("paper").addEventListener("click", () => {
+    const humanChoice = "paper";
+    const computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
+} )
 
-    }
+document.getElementById("scissors").addEventListener("click", () => {
+    const humanChoice = "scissors";
+    const computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
+})
 
-    console.log(`Your score is ${humanScore} and Computer Score is ${computerScore}`);
-
-    
-
-}
-
-
-
-playGame(); 
 
